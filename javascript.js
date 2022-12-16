@@ -1,8 +1,12 @@
+function randomInteger(min, max){
+    return Math.floor(Math.random() * (max-min +1)) + min;
+}
+
 function getComputerChoice(){
-    let guess = Math.floor(Math.random()*10) +1;
+    let guess = randomInteger(1,3);
     // console.log(guess);
-    if (guess % 2 === 0) return "ROCK";
-    else if (guess % 3 === 0) return "PAPER";
+    if (guess === 1) return "ROCK";
+    else if (guess === 2) return "PAPER";
     else return "SCISSORS";
 }
 
@@ -41,7 +45,7 @@ function game(){
 }
 
 function getPlayerChoice(){
-    let playerSelection = prompt('What is your weapon of choice?','Rock / Paper / Scissors');
+    let playerSelection = prompt('What is your weapon of choice? ','Rock / Paper / Scissors');
     return playerSelection.toUpperCase(); 
 }
 
