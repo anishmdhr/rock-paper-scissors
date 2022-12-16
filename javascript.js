@@ -1,20 +1,16 @@
 function getComputerChoice(){
     let guess = Math.floor(Math.random()*10) +1;
     // console.log(guess);
-    if (guess % 2 === 0) return "Rock";
+    if (guess % 2 === 0) return "ROCK";
     else if (guess % 3 === 0) return "PAPER";
     else return "SCISSORS";
 }
 
 // console.log(getComputerChoice());
 
-function playRound(){
-    if (playerSelection == "ROCK" && computerSelection == "SCISSORS" || 
-    playerSelection == "SCISSORS" && computerSelection == "PAPER" || 
-    playerSelection == "PAPER" && computerSelection == "ROCK") return 1;
-    else if (playerSelection == "ROCK" && computerSelection == "PAPER" || 
-    playerSelection == "PAPER" && computerSelection == "SCISSORS" || 
-    playerSelection == "SCISSORS" && computerSelection == "ROCK") return 0; 
+function playRound(playerSelection,computerSelection){
+    if (playerSelection === "ROCK" && computerSelection === "SCISSORS" || playerSelection === "SCISSORS" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "ROCK") return 1;
+    else if (playerSelection === "ROCK" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "SCISSORS" || playerSelection === "SCISSORS" && computerSelection === "ROCK") return 0; 
     else return 2;
 }
 
@@ -22,18 +18,20 @@ function game(){
     for(let i = 0; i < 5; i++){
         
         const computerSelection = getComputerChoice(); 
-        const playerSelection = getPlayerChoice();       
+        const playerSelection = getPlayerChoice();    
+        console.log(playerSelection,computerSelection);   
 
         gameResult = playRound(playerSelection,computerSelection);
+
         if (gameResult === 1) {
             console.log(`You won!! ${playerSelection} beats ${computerSelection}`);
             playerWinCount++;
-            console.log(playerWinCount);
+            console.log(`Player: ${playerWinCount}`);
         }
         else if(gameResult === 0){
             console.log(`You lost!  ${computerSelection} beats ${playerSelection}`);
             computerWinCount++;
-            console.log(computerWinCount);
+            console.log(`Computer: ${computerWinCount}`);
         }
         else console.log('You drew.');
     }
@@ -44,7 +42,7 @@ function game(){
 
 function getPlayerChoice(){
     let playerSelection = prompt('What is your weapon of choice?','Rock / Paper / Scissors');
-    playerSelection = playerSelection.toUpperCase();
+    return playerSelection.toUpperCase(); 
 }
 
 let playerWinCount = 0;
